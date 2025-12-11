@@ -2,6 +2,7 @@
 let untyped = '';
 let typed = '';
 let score = 0;
+let men = '';
 
 // 必要なHTML要素の取得
 const untypedfield = document.getElementById('untyped');
@@ -9,6 +10,7 @@ const typedfield = document.getElementById('typed');
 const wrap = document.getElementById('wrap');
 const start = document.getElementById('start');
 const count = document.getElementById('count');
+const meanning = document.getElementById('mean')
 
 // 複数のテキストを格納する配列
 const textLists = [
@@ -61,12 +63,16 @@ const createText = () => {
   typed = '';
   typedfield.textContent = typed;
 
+
   // 配列のインデックス数からランダムな数値を生成する
   let random = Math.floor(Math.random() * textLists.length);
 
   // 配列からランダムにテキストを取得し画面に表示する
   untyped = textLists[random].word;
   untypedfield.textContent = untyped;
+  mean = textLists[random].mean;
+  meaning.textContent = mean;
+
 };
 
 // キー入力の判定
