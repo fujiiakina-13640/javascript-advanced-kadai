@@ -115,7 +115,7 @@ const keyPress = e => {
       if(result) {
         window.location.reload();
       } 
-    }, 2000);
+    }, 10);
   };
     
 
@@ -159,5 +159,6 @@ const keyPress = e => {
     // キーボードのイベント処理
     document.addEventListener('keypress', keyPress);
   });
+
 
   untypedfield.textContent = 'スタートボタンで開始';
