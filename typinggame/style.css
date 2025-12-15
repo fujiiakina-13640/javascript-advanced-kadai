@@ -1,5 +1,7 @@
 /*タイピングゲーム全体*/
 body {
+  max-width: 900x;
+  max-height: 500px;
   font-size: 6em;
   text-align: center;
 }
@@ -8,31 +10,39 @@ body {
 .count {
   margin: 0;
   font-weight: bold;
-  color: #888;
+  color: #7d6aa6;
 }
 
 /*テキストが表示される領域*/
 .wrap {
   margin-top: 20px;
   padding: 80px 40px;
-  background-color: #666;
+  background-color: #3daa97;
   font-weight: bold;
-  color: #fff;
+  color: #bdd0da;
 }
-/* スタートしたらスコアを表示 */
-.typenow {
-  display: none;
-  margin: 0;
+.mean {
   font-weight: bold;
-  color: #888;
+  font-size: 60px;
+  color: #7d6aa6;
 }
 
 /*正しくタイプされた場合のテキスト*/
 .typed {
-  color: lightgreen
+  color: #275365;
 }
 
 /*ミスタイプの場合の背景*/
 .mistyped {
-  background-color: red;
+  background-color: #eabcc6;
+}
+
+/*画像のスタイル*/
+#image {
+  width: 200px;
+  height: 400px;
+  margin: 0px auto;
+  padding: auto;
+  display: none;
+
 }

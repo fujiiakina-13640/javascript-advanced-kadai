@@ -2,7 +2,7 @@
 let untyped = '';
 let typed = '';
 let score = 0;
-let men = '';
+let mean = '';
 
 // 必要なHTML要素の取得
 const untypedfield = document.getElementById('untyped');
@@ -10,50 +10,71 @@ const typedfield = document.getElementById('typed');
 const wrap = document.getElementById('wrap');
 const start = document.getElementById('start');
 const count = document.getElementById('count');
-const meanning = document.getElementById('mean')
+const meaning = document.getElementById('mean')
+const image = document.getElementById('image')
 
 // 複数のテキストを格納する配列
 const textLists = [
- {word : 'ability', mean: '能力'},
- {word : 'advice', mean: '助言'},
- {word : 'answer', mean: '答え'},
- {word : 'beauty', mean: '美しさ'},
- {word : 'chance', mean: 'チャンス'},
- {word : 'change', mean: '変化'},
- {word : 'danger', mean: '危険'},
- {word : 'dream', mean: '夢'},
- {word : 'energy', mean: 'energy'},
- {word : 'experience', mean: '経験'},
- {word : 'friend', mean: '友達'},
- {word : 'future', mean: '未来'},
- {word : 'happiness', mean: '幸せ'},
- {word : 'information', mean: '情報'},
- {word : 'knowledge', mean: '知識'},
- {word : 'memory', mean: '記憶'},
- {word : 'problem', mean: '問題'},
- {word : 'result', mean: '結果'},
- {word : 'success', mean: '成功'},
- {word : 'time', mean: '時間'},
- {word : 'achieve', mean: '達成する'},
- {word : 'believe', mean: '信じる'},
- {word : 'choose', mean: '選ぶ'},
- {word : 'describe', mean: '説明する'},
- {word : 'enjoy', mean: '楽しむ'},
- {word : 'explain', mean: '説明する'},
- {word : 'feel', mean: '感じる'},
- {word : 'forget', mean: '忘れる'},
- {word : 'hope', mean: '希望する'},
- {word : 'improve', mean: '向上する'},
- {word : 'know', mean: '知る'},
- {word : 'learn', mean: '学ぶ'},
- {word : 'make', mean: '作る'},
- {word : 'need', mean: '必要とする'},
- {word : 'offer', mean: '提供する'},
- {word : 'prefer', mean: '好む'},
- {word : 'realize', mean: '気づく'},
- {word : 'remember', mean: '覚えている'},
- {word : 'suggest', mean: '提案する'},
- {word : 'understand', mean: '理解する'},
+  {word : 'ability', mean: '能力'},
+  {word : 'advice', mean: '助言'},
+  {word : 'answer', mean: '答え'},
+  {word : 'beauty', mean: '美しさ'},
+  {word : 'chance', mean: 'チャンス'},
+  {word : 'change', mean: '変化'},
+  {word : 'danger', mean: '危険'},
+  {word : 'dream', mean: '夢'},
+  {word : 'energy', mean: 'エネルギー'},
+  {word : 'experience', mean: '経験'},
+  {word : 'friend', mean: '友達'},
+  {word : 'future', mean: '未来'},
+  {word : 'happiness', mean: '幸せ'},
+  {word : 'information', mean: '情報'},
+  {word : 'knowledge', mean: '知識'},
+  {word : 'memory', mean: '記憶'},
+  {word : 'problem', mean: '問題'},
+  {word : 'result', mean: '結果'},
+  {word : 'success', mean: '成功'},
+  {word : 'time', mean: '時間'},
+  {word : 'achieve', mean: '達成する'},
+  {word : 'believe', mean: '信じる'},
+  {word : 'choose', mean: '選ぶ'},
+  {word : 'describe', mean: '説明する'},
+  {word : 'enjoy', mean: '楽しむ'},
+  {word : 'explain', mean: '説明する'},
+  {word : 'feel', mean: '感じる'},
+  {word : 'forget', mean: '忘れる'},
+  {word : 'hope', mean: '希望する'},
+  {word : 'improve', mean: '向上する'},
+  {word : 'know', mean: '知る'},
+  {word : 'learn', mean: '学ぶ'},
+  {word : 'make', mean: '作る'},
+  {word : 'need', mean: '必要とする'},
+  {word : 'offer', mean: '提供する'},
+  {word : 'prefer', mean: '好む'},
+  {word : 'realize', mean: '気づく'},
+  {word : 'remember', mean: '覚えている'},
+  {word : 'suggest', mean: '提案する'},
+  {word : 'understand', mean: '理解する'}, 
+  {word : 'active', mean: '活発な'},
+  {word : 'ancient', mean: '古代の'},
+  {word : 'beautiful', mean: '美しい'},
+  {word : 'brave', mean: '勇敢な'},
+  {word : 'careful', mean: '注意深い'},
+  {word : 'different', mean: '異なる'},
+  {word : 'easy', mean: '簡単な'},
+  {word : 'famous', mean: '有名な'},
+  {word : 'happy', mean: '幸せな'},
+  {word : 'important', mean: '重要な'},
+  {word : 'interesting', mean: '興味深い'},
+  {word : 'kind', mean: '親切な'},
+  {word : 'lucky', mean: '幸運な'},
+  {word : 'modern', mean: '現代的な'},
+  {word : 'natural', mean: '自然の'},
+  {word : 'quiet', mean: '静かな'},
+  {word : 'rich', mean: '裕福な'},
+  {word : 'strong', mean: '強い'},
+  {word : 'useful', mean: '役に立つ'},
+  {word : 'young', mean: '若い'},
 ];
 
 // ランダムなテキストを表示
@@ -111,31 +132,33 @@ const keyPress = e => {
  
   // スコアに応じて異なるメッセージを変数textに格納する
   if(score < 100) {
-    text = `あなたのランクはCです。\nBランクまであと${100 - score}文字です。`;
+    text = `初心者脱出。\nﾌｧｲﾄｰ( ･ᴗ･ )⚐⚑⚐がんばってね！`;
   } else if(score < 200) {
-    text = `あなたのランクはBです。\nAランクまであと${200 - score}文字です。`;    
+    text = `のびざかり。\nFight！(*˙˘˙*)و⚑⁎∗がんばってるね！`;    
   } else if(score < 300) {
-    text = `あなたのランクはAです。\nSランクまであと${300 - score}文字です。`;    
+    text = `さすが！早い！\nFight！٩(ˊᗜˋ*)وめざせ上級者！。`;    
   } else if(score >= 300) {
-    text = `あなたのランクはSです。\nおめでとうございます!`;    
+    text = `すごい！タイピング上級者です。\n(｡˃ ᵕ ˂ )_∠※☆おめでとう`;    
   }
  
   // 生成したメッセージと一緒に文字列を返す
   return `${score}文字打てました!\n${text}\n【OK】リトライ / 【キャンセル】終了`;
+
 };
 
   // ゲームを終了
   const gameOver = id => {
     clearInterval(id);
 
-    // 課題 タイマーが0になったら「タイムアップ」を表示する
+    // タイマーが0になったら「受験がんばってね！」を表示する
     
     // キーボードのイベントリスナーを解除
     document.removeEventListener('keypress', keyPress);
 
-    // タイムアップ を表示する
-    typedfield.textContent = ''
-    untypedfield.textContent = 'お疲れさまでした☆'
+    typedfield.textContent = '';
+    untypedfield.textContent = '受験がんばってね！';
+    meaning.textContent = '';
+    image.style.display = 'block';
 
     // 表示された後にゲーム終了処理
     setTimeout(() => {
@@ -145,7 +168,7 @@ const keyPress = e => {
       if(result) {
         window.location.reload();
       } 
-    }, 10);
+    }, 60);
   };
     
 
@@ -181,9 +204,6 @@ const keyPress = e => {
 
     // 「スタート」ボタンを非表示にする
     start.style.display = 'none';
-
-    // カウント数を表示する
-    typenow.style.display = 'block';
 
     // キーボードのイベント処理
     document.addEventListener('keypress', keyPress);
